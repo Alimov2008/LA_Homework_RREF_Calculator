@@ -13,7 +13,14 @@ def get_int(context: str) -> int:
 
 
 def main() -> None:
-    pass
+    matrix_size_x: int = get_int("Enter X size of matrix : ")
+    matrix_size_y: int = get_int("Enter Y size of matrix : ")
+    min_key_value: int = get_int("Enter minimum value of elements : ")
+    max_key_value: int = get_int("Enter max value of elements : ")
+    matrix: list[[int]] = matrix_generator(
+        matrix_size_x, matrix_size_y, min_key_value, max_key_value
+    )
+    display(matrix)
 
 
 if __name__ == "__main__":
