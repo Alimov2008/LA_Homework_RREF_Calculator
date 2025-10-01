@@ -31,10 +31,10 @@ def factorisation(U_form):
 
     for i in range(n):
         for j in range(i + 1, n):
-            m = round(U_form[j][i] / U_form[i][i], 2)
+            m = round(U_form[j][i] / U_form[i][i], 3)
             L_form[j][i] = m
             for k in range(i, n):
-                U_form[j][k] = round(U_form[j][k] - m * U_form[i][k], 2)
+                U_form[j][k] = round(U_form[j][k] - m * U_form[i][k], 3)
 
     # print("L matrix :\n")
     # for i in l:
@@ -45,9 +45,9 @@ def factorisation(U_form):
     # for i in U:
     #     print(i)
 
-    print("L matrix form: ")
+    print("\nL matrix form: \n")
     display(L_form)
-    print("U_form")
+    print("\nU matrix form: \n")
     display(U_form)
 
 
