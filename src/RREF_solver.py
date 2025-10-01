@@ -1,3 +1,6 @@
+from matrix_generator import display, matrix_generator
+
+
 def factorisation(U):
     ## creating pre L matrix
     n = len(U)
@@ -41,8 +44,7 @@ def main() -> None:
             temp.append(int(input()))
         A.append(temp)
 
-
-factorisation(A)
+    factorisation(A)
 
 
 if __name__ == "__main__":

@@ -1,4 +1,5 @@
 from matrix_generator import display, matrix_generator
+from RREF_solver import factorisation
 
 
 def get_int(context: str) -> int:
@@ -21,6 +22,7 @@ def main() -> None:
         matrix_size_x, matrix_size_y, min_key_value, max_key_value
     )
     display(matrix)
+    factorisation(matrix)
 
 
 if __name__ == "__main__":
