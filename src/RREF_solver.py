@@ -1,0 +1,49 @@
+def factorisation(U):
+    ## creating pre L matrix
+    n = len(U)
+
+    l = []
+    for i in range(n):
+        temp_row = []
+
+        for j in range(n):
+            if i == j:
+                temp_row.append(1)
+            else:
+                temp_row.append(0)
+        l.append(temp_row)
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            m = U[j][i] / U[i][i]
+            l[j][i] = m
+            for k in range(i, n):
+                U[j][k] = U[j][k] - m * U[i][k]
+
+    print("L matrix :\n")
+    for i in l:
+        print(i)
+    print("\n")
+    print("U matrix :\n")
+
+    for i in U:
+        print(i)
+
+
+def main() -> None:
+    A = []
+
+    size = int(input("Enter the size of the matrix: "))
+    for i in range(size):
+        temp = []
+        for j in range(size):
+            print(f"Enter {j + 1} element of {i + 1} row")
+            temp.append(int(input()))
+        A.append(temp)
+
+
+factorisation(A)
+
+
+if __name__ == "__main__":
+    main()
