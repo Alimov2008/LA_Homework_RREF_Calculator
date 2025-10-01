@@ -5,7 +5,7 @@ def factorisation(U):
     ## creating pre L matrix
     n = len(U)
 
-    l = []
+    L_form = []
     for i in range(n):
         temp_row = []
 
@@ -14,23 +14,27 @@ def factorisation(U):
                 temp_row.append(1)
             else:
                 temp_row.append(0)
-        l.append(temp_row)
+        L_form.append(temp_row)
 
     for i in range(n):
         for j in range(i + 1, n):
             m = U[j][i] / U[i][i]
-            l[j][i] = m
+            L_form[j][i] = m
             for k in range(i, n):
                 U[j][k] = U[j][k] - m * U[i][k]
 
-    print("L matrix :\n")
-    for i in l:
-        print(i)
-    print("\n")
-    print("U matrix :\n")
+    # print("L matrix :\n")
+    # for i in l:
+    #     print(i)
+    # print("\n")
+    # print("U matrix :\n")
 
-    for i in U:
-        print(i)
+    # for i in U:
+    #     print(i)
+    print("L matrix form: ")
+    display(L_form)
+    print("U_form")
+    display(U)
 
 
 def main() -> None:
