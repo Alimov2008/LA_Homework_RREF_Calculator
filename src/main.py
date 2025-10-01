@@ -21,6 +21,7 @@ def main() -> None:
     matrix: list[[int]] = matrix_generator(  # type:ignore
         matrix_size_x, matrix_size_y, min_key_value, max_key_value
     )
+    print("Inputted matrix : ")
     display(matrix)
     factorisation(matrix)
 

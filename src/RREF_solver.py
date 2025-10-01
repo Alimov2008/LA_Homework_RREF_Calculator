@@ -6,6 +6,7 @@ def factorisation(U):
     n = len(U)
 
     L_form = []
+
     for i in range(n):
         temp_row = []
 
@@ -18,10 +19,10 @@ def factorisation(U):
 
     for i in range(n):
         for j in range(i + 1, n):
-            m = U[j][i] / U[i][i]
+            m = round(U[j][i] / U[i][i], 2)
             L_form[j][i] = m
             for k in range(i, n):
-                U[j][k] = U[j][k] - m * U[i][k]
+                U[j][k] = round(U[j][k] - m * U[i][k], 2)
 
     # print("L matrix :\n")
     # for i in l:
@@ -31,6 +32,7 @@ def factorisation(U):
 
     # for i in U:
     #     print(i)
+
     print("L matrix form: ")
     display(L_form)
     print("U_form")
@@ -39,7 +41,6 @@ def factorisation(U):
 
 def main() -> None:
     A = []
-
     size = int(input("Enter the size of the matrix: "))
     for i in range(size):
         temp = []
