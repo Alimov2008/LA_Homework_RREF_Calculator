@@ -13,47 +13,51 @@ def custom_matrix() -> list[[float]]:  # type:ignore
     return custom_matrix
 
 
-def factorisation(U_form):
-    ## creating pre L matrix
-    n = len(U_form)
+def factorisation(A):
+    n = len(A)
 
-    L_form = []
+    # Create deep copy of A to avoid modifying input
+    A = [row[:] for row in A]
 
-    for i in range(n):
-        temp_row = []
-
-        for j in range(n):
-            if i == j:
-                temp_row.append(1)
-            else:
-                temp_row.append(0)
-        L_form.append(temp_row)
+    # Initialize matrices
+    L = [[0.0] * n for _ in range(n)]
+    U = [[0.0] * n for _ in range(n)]
+    # Identity matrix
+    P = [[float(i == j) for j in range(n)] for i in range(n)]
 
     for i in range(n):
-        for j in range(i + 1, n):
-            m = round(U_form[j][i] / U_form[i][i], 3)
-            L_form[j][i] = m
-            for k in range(i, n):
-                U_form[j][k] = round(U_form[j][k] - m * U_form[i][k], 3)
+        # Partial Pivoting: find pivot row
+        max_row = max(range(i, n), key=lambda r: abs(A[r][i]))
+        if abs(A[max_row][i]) < 1e-12:
+            raise ValueError("Matrix is singular or near-singular!")
 
-    # print("L matrix :\n")
-    # for i in l:
-    #     print(i)
-    # print("\n")
-    # print("U matrix :\n")
+        # Swap rows in A and P
+        if max_row != i:
+            A[i], A[max_row] = A[max_row], A[i]
+            P[i], P[max_row] = P[max_row], P[i]
+            L[i][:i], L[max_row][:i] = L[max_row][:i], L[i][:i]
 
-    # for i in U:
-    #     print(i)
+        # U matrix
+        for k in range(i, n):
+            sum_val = sum(L[i][j] * U[j][k] for j in range(i))
+            U[i][k] = A[i][k] - sum_val
 
-    print("\nL matrix form: \n")
-    display(L_form)
-    print("\nU matrix form: \n")
-    display(U_form)
+        # L matrix
+        for k in range(i + 1, n):
+            sum_val = sum(L[k][j] * U[j][i] for j in range(i))
+            L[k][i] = (A[k][i] - sum_val) / U[i][i]
+
+        L[i][i] = 1.0
+
+    return P, L, U
 
 
 def main() -> None:
     matrix: list[[float]] = custom_matrix()  # type:ignore
-    factorisation(matrix)
+    P, L, U = factorisation(matrix)
+    display(P)
+    display(L)
+    display(U)
 
 
 if __name__ == "__main__":

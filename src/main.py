@@ -23,7 +23,8 @@ def main() -> None:
     )
     print("\nInputted matrix : \n")
     display(matrix)
-    factorisation(matrix)
+    answer = factorisation(matrix)
+    display(answer)
 
 
 if __name__ == "__main__":
