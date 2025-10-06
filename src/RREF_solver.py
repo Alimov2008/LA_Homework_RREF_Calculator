@@ -48,6 +48,9 @@ def factorisation(A):
             L[k][i] = (A[k][i] - sum_val) / U[i][i]
 
         L[i][i] = 1.0
+    L = [[round(val, 3) for val in row] for row in L]
+    U = [[round(val, 3) for val in row] for row in U]
+    P = [[round(val, 3) for val in row] for row in P]
 
     return P, L, U
 
