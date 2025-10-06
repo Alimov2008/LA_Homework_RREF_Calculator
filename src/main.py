@@ -23,8 +23,13 @@ def main() -> None:
     )
     print("\nInputted matrix : \n")
     display(matrix)
-    answer = factorisation(matrix)
-    display(answer)
+    pivots, L_matrix, U_matrix = factorisation(matrix)
+    print("Pivot matrix : ")
+    display(pivots)
+    print("\n L matrix : ")
+    display(L_matrix)
+    print("\n U matrix : ")
+    display(U_matrix)
 
 
 if __name__ == "__main__":
